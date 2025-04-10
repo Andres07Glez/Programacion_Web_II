@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Practica 11</title>
+</head>
+<body>
+	<form>
+		<label for="txtMatricula">Matricula:</label>
+        <input type="number"  id="txtMatricula" placeholder="Ingrese la matricula" >
+        <label for="txtNombre">Nombre:</label>
+        <input type="text"  id="txtNombre" placeholder="Ingrese el Nombre " >
+        <label for="txtAp_paterno">Apellido paterno:</label>
+        <input type="text"  id="txtAp_paterno" placeholder="Ingrese el Apellido Paterno" >
+        <label for="txtAp_materno">Apellido materno:</label>
+        <input type="text"  id="txtAp_materno" placeholder="Ingrese el Apellido materno" >
+	</form>
+	
+	<button type="button" onclick="agregarAlumno()">Agregar Alumno</button>
+	
+	<p id="datos"></p>
+
+
+	<script>
+		let listaAlumnos = [];
+		function Alumno(matricula,nombre,ap_paterno,ap_materno){
+			this.matricula=matricula;
+			this.nombre=nombre;
+			this.ap_paterno=ap_paterno;
+			this.ap_materno=ap_materno;
+			this.allDatos = function() {
+			    return this.matricula + " " + this.nombre+" "+this.ap_paterno+" "+this.ap_materno +"\n";
+			};
+		}
+		function agregarAlumno(){
+			const matricula = document.getElementById("txtMatricula").value;
+			const nombre = document.getElementById("txtNombre").value;
+			const ap_paterno = document.getElementById("txtAp_paterno").value;
+			const ap_materno = document.getElementById("txtAp_materno").value;
+
+			listaAlumnos.push(new Alumno(matricula, nombre, ap_paterno, ap_materno));
+			let alumnos='';
+			for (let i = 0; i < listaAlumnos.length; i++) {
+		        let alumno = listaAlumnos[i];
+		        alumnos+=alumno.allDatos();
+		    }
+		    document.getElementById("datos").innerHTML =alumnos; 
+
+		}
+
+	</script>
+
+
+</body>
+</html>
